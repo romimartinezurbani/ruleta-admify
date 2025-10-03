@@ -1,23 +1,20 @@
-// Import the functions you need from the SDKs you need
+// Import Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Configuración desde variables de entorno de Vite (Vercel)
 const firebaseConfig = {
-  apiKey: "AIzaSyDJP_8rkEd4IM7uqzXXtLzb1JxR6KhClmM",
-  authDomain: "admify-a4aa9.firebaseapp.com",
-  projectId: "admify-a4aa9",
-  storageBucket: "admify-a4aa9.firebasestorage.app",
-  messagingSenderId: "816114628954",
-  appId: "1:816114628954:web:03e1a8976e415988a75b63",
-  measurementId: "G-72W9X7L8VD"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 
-// Inicializar Firestore
+// Exportar Firestore
 export const db = getFirestore(app);
