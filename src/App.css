@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Wide:wght@400&display=swap');
 
 :root {
-  --color-bg: #051D40;
+  --color-bg: #f5f7ef;
   --color-accent: #4BB0A9;
+  --color-text: #051D40;
   --color-white: #FFFFFF;
   --font-primary: 'Wide', sans-serif;
   --font-secondary: 'Quicksand', sans-serif;
@@ -13,7 +14,7 @@ body {
   padding: 0;
   font-family: var(--font-secondary);
   background-color: var(--color-bg);
-  color: var(--color-white);
+  color: var(--color-text);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,12 +34,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.7);
   padding: 25px;
   border-radius: 12px;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .form-container h1 {
@@ -52,13 +53,13 @@ body {
   padding: 12px;
   font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: transparent;
-  color: var(--color-white);
+  border: 1px solid rgba(5, 29, 64, 0.3);
+  background: var(--color-white);
+  color: var(--color-text);
 }
 
 .form-container input::placeholder {
-  color: rgba(255,255,255,0.6);
+  color: rgba(5, 29, 64, 0.5);
 }
 
 button {
@@ -78,6 +79,13 @@ button:hover {
   transform: scale(1.05);
 }
 
+/* Logo */
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
 /* Ruleta */
 .ruleta-container {
   display: flex;
@@ -86,6 +94,19 @@ button:hover {
   gap: 15px;
   text-align: center;
   margin-top: 20px;
+  position: relative;
+}
+
+/* Logo centrado dentro de la ruleta */
+.logo-ruleta {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .resultado {
@@ -111,5 +132,28 @@ button:hover {
     font-size: 0.9rem;
     padding: 10px 15px;
   }
+}
+.logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.ruleta-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-ruleta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
 }
 

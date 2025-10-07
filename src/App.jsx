@@ -3,12 +3,13 @@ import { Wheel } from "react-custom-roulette";
 import "./App.css";
 import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import logo from "./assets/logo.png";
 
-const data = [
-  { option: "Descuento especial", style: { backgroundColor: "#4BB0A9", textColor: "#FFFFFF" } },
-  { option: "Llavero", style: { backgroundColor: "rgba(255,255,255,0.15)", textColor: "#FFFFFF" } },
+const data = [ 
+  { option: "25%", style: { backgroundColor: "#4BB0A9", textColor: "#FFFFFF" } },
+  { option: "Llavero", style: { backgroundColor: "#051d40", textColor: "#FFFFFF" } },
   { option: "Asesoría gratis", style: { backgroundColor: "#4BB0A9", textColor: "#FFFFFF" } },
-  { option: "¡Intenta de nuevo!", style: { backgroundColor: "rgba(255,255,255,0.15)", textColor: "#FFFFFF" } },
+  { option: "¡Intenta de nuevo!", style: { backgroundColor: "#051d40", textColor: "#FFFFFF" } },
 ];
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
     <div className="app-container">
       {!submitted ? (
         <form onSubmit={handleSubmit} className="form-container">
+          
+          <img src={logo} alt="Admify logo" className="logo" />
+
           <h1>🎉 Ruleta Admify 🎉</h1>
           <input
             type="text"
@@ -73,26 +77,34 @@ function App() {
         </form>
       ) : (
         <div className="ruleta-container">
-          <h2>¡Hola {formData.nombre}!</h2>
-          <Wheel
-            mustStartSpinning={mustSpin}
-            prizeNumber={prizeNumber}
-            data={data}
-            outerBorderColor="#4BB0A9"
-            outerBorderWidth={5}
-            innerBorderColor="#FFFFFF"
-            innerBorderWidth={5}
-            radiusLineColor="#FFFFFF"
-            radiusLineWidth={2}
-            textDistance={65}
-            fontSize={16}
-            onStopSpinning={() => {
-              setMustSpin(false);
-              const premio = data[prizeNumber].option;
-              setResult(premio);
-              saveToFirebase(premio);
-            }}
-          />
+  <img src={logo} alt="Admify logo" className="logo" />     
+  <h2>¡Hola {formData.nombre}!</h2>
+  
+  <div className="ruleta-wrapper">
+    <Wheel
+      mustStartSpinning={mustSpin}
+      prizeNumber={prizeNumber}
+      data={data}
+      outerBorderColor="#4BB0A9"
+      outerBorderWidth={5}
+      innerBorderColor="#FFFFFF"
+      innerBorderWidth={5}
+      radiusLineColor="#FFFFFF"
+      radiusLineWidth={2}
+      textDistance={65}
+      fontSize={16}
+      onStopSpinning={() => {
+        setMustSpin(false);
+        const premio = data[prizeNumber].option;
+        setResult(premio);
+        saveToFirebase(premio);
+      }}
+    />
+    {/* 👇 Logo centrado */}
+    <img src={logo} alt="Admify logo" className="logo-ruleta" />
+  </div>
+
+          
           <button onClick={handleSpinClick}>Girar Ruleta</button>
           {result && <p className="resultado">Ganaste: {result}</p>}
         </div>

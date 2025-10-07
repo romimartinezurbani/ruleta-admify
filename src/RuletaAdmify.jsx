@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
+import logo from "src/assets/logo.png";
 
-// 👉 Configuración de premios con estilos de marca
 const data = [
-  { option: "🎁 Descuento especial", style: { backgroundColor: "#4BB0A9", textColor: "#FFFFFF" } },
+  { option: "🎁 Dto especial", style: { backgroundColor: "#4BB0A9", textColor: "#FFFFFF" } },
   { option: "🔑 Llavero Admify", style: { backgroundColor: "#FFFFFF", textColor: "#051D40" } },
   { option: "📞 Asesoría gratuita", style: { backgroundColor: "#4BB0A9", textColor: "#FFFFFF" } },
   { option: "🔄 Intentá de nuevo", style: { backgroundColor: "#FFFFFF", textColor: "#051D40" } },
@@ -16,7 +16,6 @@ export default function RuletaAdmify() {
   const [user, setUser] = useState({ nombre: "", email: "" });
   const [resultado, setResultado] = useState("");
 
-  // Girar ruleta
   const handleSpinClick = () => {
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -25,17 +24,22 @@ export default function RuletaAdmify() {
     }
   };
 
-  // Enviar formulario
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // 🚀 Acá podés guardar en Firebase o tu backend
     setFormCompleted(true);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#051D40] text-white p-6 font-[Quicksand]">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#fff] text-white p-6 font-[Quicksand]">
+      {/* Logo superior */}
+      <img
+        src={logo}
+        alt="Admify Logo"
+        className="w-24 sm:w-28 mb-6 drop-shadow-lg select-none"
+      />
+
       {!formCompleted ? (
-        // 📌 Formulario inicial
+        // 📋 Formulario
         <div className="bg-white text-[#051D40] p-6 rounded-2xl shadow-md w-full max-w-sm">
           <h2 className="text-xl font-bold mb-4 text-center font-[Wide]">
             Participá en la ruleta 🎡
@@ -66,10 +70,12 @@ export default function RuletaAdmify() {
           </form>
         </div>
       ) : (
-        // 📌 Ruleta
+        // 🎯 Ruleta
         <div className="flex flex-col items-center space-y-6">
           <h2 className="text-2xl font-bold font-[Wide]">¡Giramos la ruleta! 🚀</h2>
-          <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
+
+          {/* Contenedor ruleta + logo central */}
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md flex items-center justify-center">
             <Wheel
               mustStartSpinning={mustSpin}
               prizeNumber={prizeNumber}
@@ -89,6 +95,13 @@ export default function RuletaAdmify() {
                 setMustSpin(false);
                 setResultado(data[prizeNumber].option);
               }}
+            />
+
+            {/* 🌀 Logo centrado fijo */}
+            <img
+              src={logo}
+              alt="Admify Logo Center"
+              className="absolute top-1/2 left-1/2 w-20 sm:w-24 -translate-x-1/2 -translate-y-1/2 z-10 select-none pointer-events-none"
             />
           </div>
 
@@ -110,3 +123,4 @@ export default function RuletaAdmify() {
     </div>
   );
 }
+
